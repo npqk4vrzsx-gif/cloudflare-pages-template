@@ -1,117 +1,301 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Metadata -->
-    <meta charset="utf-8">
-    <meta name="keywords" content="cloudflare, pages, template, edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<meta name="robots" content="index, follow">
-	<title>Home | alani capital - innovative venture capital</title>
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
-	<!-- Metadata END -->
-    
-	<!-- Stylesheets -->
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css?1563">
-	<link rel="stylesheet" type="text/css" href="style.css?2909">
-	<link rel="stylesheet" type="text/css" href="./css/animate.min.css?7190">
-	<link rel="stylesheet" type="text/css" href="./css/all.min.css">
-	<!-- Stylesheets END -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>alani capital | Venture Capital</title>
+<meta name="description" content="alani capital — an innovative venture capital firm backing bold founders.">
+<style>
+  :root {
+    --bg: #0b0c10;
+    --bg-alt: #111319;
+    --text: #f5f5f2;
+    --muted: #9a9a94;
+    --accent: #c9a15a;
+    --border: rgba(255,255,255,0.08);
+  }
 
-	<!-- Here HTMLRewriter will write the Metadata from _middleware.js -->
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 6vw;
+    background: linear-gradient(to bottom, rgba(11,12,16,0.9), transparent);
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    text-transform: lowercase;
+  }
+
+  nav a {
+    margin-left: 32px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover { color: var(--text); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+  }
+
+  .hero p {
+    margin-top: 24px;
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+
+  .hero .cta {
+    margin-top: 40px;
+    display: inline-flex;
+    gap: 16px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #14140f;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  section {
+    padding: 120px 6vw;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  section h2 {
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 600;
+    max-width: 700px;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  section > p.lead {
+    color: var(--muted);
+    max-width: 620px;
+    font-size: 1.05rem;
+  }
+
+  .grid {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .stat .num {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .stat .label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  footer {
+    padding: 60px 6vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--text); }
+
+  .bg-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 700px;
+    max-height: 700px;
+    background: radial-gradient(circle, rgba(201,161,90,0.15), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  #contact {
+    background: var(--bg-alt);
+  }
+
+  .contact-row {
+    margin-top: 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    nav a { margin-left: 18px; font-size: 0.8rem; }
+    section { padding: 80px 6vw; }
+  }
+</style>
 </head>
 <body>
 
-<!-- Preloader -->
-<div id="page-loading-blocs-notifaction" class="page-preloader"></div>
-<!-- Preloader END -->
+<header>
+  <div class="logo">alani capital</div>
+  <nav>
+    <a href="#approach">Approach</a>
+    <a href="#focus">Focus</a>
+  </nav>
+</header>
 
+<section class="hero">
+  <div class="bg-glow"></div>
+  <div class="hero-eyebrow">Venture Capital</div>
+  <h1>Backing bold founders building what's next.</h1>
+  <p>alani capital partners with early-stage teams at the edge of technology, providing capital, conviction, and long-term support.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="#approach">Our approach</a>
+  </div>
+</section>
 
-<!-- Main container -->
-<div class="page-container">
-    
-<!-- bloc-0 -->
-<div class="bloc bloc-fill-screen l-bloc " id="bloc-0">
-	<div class="container fill-bloc-top-edge">
-		<div class="row">
-			<div class="col-12">
-				<nav class="navbar navbar-light row navbar-expand-md" role="navigation">
-					<div class="container-fluid ">
-						<a class="navbar-brand" href="index.html">Welcome</a>
-						<button id="nav-toggle" type="button" class="ui-navbar-toggler navbar-toggler border-0 p-0 ms-auto me-md-0" aria-expanded="false" aria-label="Toggle navigation" data-bs-toggle="collapse" data-bs-target=".navbar-35092">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse navbar-120 navbar-29706 navbar-45188 navbar-18426 navbar-42371 navbar-35092">
-							<ul class="site-navigation nav navbar-nav ms-auto">
-								<li class="nav-item">
-									<a href="index.html" class="nav-link a-btn">Home</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1 class="text-center mg-clear hero-header-text text-blue-gradient">
-					alani capital.<br>
-				</h1>
-				<h3 class="mg-md float-none text-center hero-subheader tc-black">
-					Innovative Venture Capital
-				</h3>
-			</div>
-		</div>
-	</div>
-	<div class="container fill-bloc-bottom-edge">
-		<div class="row">
-			<div class="col-12">
-				<div class="text-center">
-					<a href="#" data-scroll-speed="1000" onclick="scrollToTarget('0',this)"><span class="fa fa-angle-down icon-md animated bounce animDelay08"></span></a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-0 END -->
+<section id="approach">
+  <div class="section-label">Approach</div>
+  <h2>We invest early, and we stay close.</h2>
+  <p class="lead">We back founders from the first check through scale, combining patient capital with hands-on support across strategy, hiring, and growth.</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="num">Seed</div>
+      <div class="label">to Series A</div>
+    </div>
+    <div class="stat">
+      <div class="num">10+</div>
+      <div class="label">Years of experience</div>
+    </div>
+    <div class="stat">
+      <div class="num">Global</div>
+      <div class="label">Portfolio reach</div>
+    </div>
+  </div>
+</section>
 
-<!-- bloc-1 -->
-<div class="bloc l-bloc" id="bloc-1">
-	<div class="container bloc-lg">
-		<div class="row">
-			<div class="col-lg-12 hero-first-col-mb">
-				<h1 class="mg-md text-center">
-					The Cloudflare Network
-				</h1>
-				<div class="text-center">
-					<a href="https://www.cloudflare.com/network/" class="btn btn-lg btn-rd btn-portland-orange" rel="nofollow noopener noreferrer" target="_blank">Explore</a>
-				</div>
-			</div>
-			<div class="offset-md-2 col-md-8 col-lg-8 offset-lg-2">
-				<div class="mx-auto d-block blocsapp-device blocsapp-device-mb mb-space-grey">
-					<img src="img/lazyload-ph.png" data-src="img/cloudflare-network.png" class="img-fluid lazyload" alt="cloudflare network" />
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- bloc-1 END -->
+<section id="focus">
+  <div class="section-label">Focus Areas</div>
+  <h2>Where we spend our time.</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Infrastructure</h3>
+      <p>Foundational platforms and tools that power the next generation of software.</p>
+    </div>
+    <div class="card">
+      <h3>Fintech</h3>
+      <p>Modern financial products and rails built for speed, access, and trust.</p>
+    </div>
+    <div class="card">
+      <h3>Applied AI</h3>
+      <p>Practical AI applications that create measurable value for real businesses.</p>
+    </div>
+    <div class="card">
+      <h3>Consumer</h3>
+      <p>Products and brands that earn a lasting place in people's daily lives.</p>
+    </div>
+  </div>
+</section>
 
-<!-- ScrollToTop Button -->
-<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1',this)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32"><path class="scroll-to-top-btn-icon" d="M30,22.656l-14-13-14,13"/></svg></a>
-<!-- ScrollToTop Button END-->
+<footer>
+  <div>&copy; <span id="current-year"></span> alani capital. All rights reserved.</div>
+</footer>
 
-
-</div>
-<!-- Main container END -->
-    
-
-
-<!-- Additional JS -->
-<script src="./js/bootstrap.bundle.min.js?8537"></script>
-<script src="./js/blocs.min.js?4639"></script>
-<script src="./js/lazysizes.min.js" defer></script><!-- Additional JS END -->
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
